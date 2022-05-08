@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/main/widgets/custom_drawer.dart';
 import 'package:portfolio/ui/main/widgets/footer.dart';
-import 'package:portfolio/ui/main/widgets/nav_bar.dart';
+import 'package:portfolio/ui/main/widgets/nav_bar/nav_bar.dart';
 import 'package:portfolio/ui/pages/demo_projects/demo_projects_page.dart';
+import 'package:portfolio/ui/pages/experience/experience_page.dart';
 import 'package:portfolio/ui/pages/home/home_page.dart';
 import 'package:portfolio/ui/pages/industrial_projects/industrial_projects_page.dart';
 import 'package:portfolio/utils/app_data.dart';
@@ -21,12 +22,14 @@ class _MainPageState extends State<MainPage>
 
   final List<Widget> _pages = const [
     HomePage(),
+    ExperiencePage(),
     IndustrialProjectsPage(),
     DemoProjectsPage()
   ];
 
   final List<String> _titles = const [
     "Home",
+    "Experience",
     "Industrial Projects",
     "Demo Projects",
   ];
@@ -44,24 +47,21 @@ class _MainPageState extends State<MainPage>
     return Scaffold(
       key: ScaffoldKeys.mainKey,
       endDrawer: CustomDrawer(controller: _controller, titles: _titles),
-      body: SizedBox(
-        height: AppData.shared.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            NavBar(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          NavBar(
+            controller: _controller,
+            titles: _titles,
+          ),
+          Expanded(
+            child: TabBarView(
               controller: _controller,
-              titles: _titles,
+              children: _pages,
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _controller,
-                children: _pages,
-              ),
-            ),
-            const Footer(),
-          ],
-        ),
+          ),
+          const Footer(),
+        ],
       ),
     );
   }
