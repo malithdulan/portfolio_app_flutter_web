@@ -1,0 +1,1 @@
+enum LOADING_STATUS { success, error, loading }
