@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/pages/home/widgets/profile/profile_desktop_layout.dart';
+import 'package:portfolio/ui/pages/home/widgets/profile/profile_mobile_layout.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black12,
-      child: Row(
-        children: [
-          Image.asset("assets/images/profile_pic.jpeg", width: 200, height: 200,),
-          Column(
-            children: [
-              Text("Hy! I am"),
-              Text("Malith Dulan Kuruwita"),
-              Text("dsfsdfsd dsf dsfsd fsd f sd"),
-              ElevatedButton(onPressed: () {}, child: Text("Hire Me"))
-            ],
-          )
-        ],
-      )
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return Padding(
+          padding: EdgeInsets.all(constraints.maxWidth > 1024 ? 40 : 25),
+          child: (constraints.maxWidth > 1024)
+              ? const ProfileDesktopLayout()
+              : const ProfileMobileLayout(),
+        );
+      },
     );
   }
 }
