@@ -1,17 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class NavBarMain extends StatelessWidget {
-  const NavBarMain({Key? key}) : super(key: key);
+  final double width;
+  const NavBarMain({Key? key, required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return LayoutBuilder(
-      builder: (context, constraints) => SizedBox(
-        width: width * 0.3,
-        child: const Center(
-          child: Text("Portfolio"),
-        ),
+    return Container(
+      padding: EdgeInsets.only(left: (width > 600) ? 0 : 10) ,
+      width: (width > 600) ? width * 0.3 : width * 0.8,
+      height: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          GradientText(
+            "Portfolio",
+            style: const TextStyle(
+              fontSize: 25,
+            ),
+            colors: const [
+              Colors.green,
+              Colors.greenAccent,
+            ],
+          ),
+          Consumer<ThemeProvider>(builder: (context, provider, child) {
+            return IconButton(
+              onPressed: () {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .changeTheme(provider.mode == ThemeMode.dark
+                    ? ThemeMode.light
+                    : ThemeMode.dark);
+              },
+              padding: EdgeInsets.zero,
+              icon: FaIcon(
+                (provider.mode == ThemeMode.light)
+                    ? FontAwesomeIcons.moon
+                    : FontAwesomeIcons.sun,
+                size: 20,
+              ),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+            );
+          }),
+        ],
       ),
     );
   }

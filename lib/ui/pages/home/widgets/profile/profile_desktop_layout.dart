@@ -1,55 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/common_widgets/gradient_button.dart';
+import 'package:portfolio/utils/constants.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class ProfileDesktopLayout extends StatelessWidget {
-  const ProfileDesktopLayout({Key? key}) : super(key: key);
+  final String? image;
+  final String? title;
+  final String? name;
+  final String? description;
+  const ProfileDesktopLayout({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.name,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.network(
-          "https://firebasestorage.googleapis.com/v0/b/portfolio-1925a.appspot.com/o/profile%2Fprofile_pic.jpeg?alt=media&token=d0b038b4-039f-4932-a4eb-115da904cf10",
-          width: 200,
-          height: 200,
-          fit: BoxFit.cover,
-        ),
-        const SizedBox(
-          width: 50,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Hy! I am",
-                    style: TextStyle(
-                      fontSize: 50,
-                    ),
-                  ),
-                  Text(
-                    "Malith Dulan Kuruwita",
-                    style: TextStyle(
-                      fontSize: 50,
-                    ),
-                  ),
-                ],
-              ),
-              const Text(
-                "A lover of technology. An upright individual not afraid of getting out of the comfort zone and trying out new things. Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
-                style: TextStyle(fontSize: 18),
-              ),
-              Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: ElevatedButton(
-                      onPressed: () {}, child: Text("Hire Me")))
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(40),
+      child: Row(
+        children: [
+          Image.network(
+            image ?? Constants.defaultUrl,
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover,
           ),
-        )
-      ],
+          const SizedBox(
+            width: 50,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title ?? "",
+                      style: const TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    GradientText(
+                      name ?? "",
+                      style: const TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      colors: const [
+                        Colors.green,
+                        Colors.blue,
+                      ],
+                    ),
+                  ],
+                ),
+                Text(
+                  description ?? "",
+                  style:
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF778899)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: GradientButton(title: "Hire Me", callBack: () {},),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

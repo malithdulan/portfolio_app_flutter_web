@@ -16,20 +16,23 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppData.shared.height * 0.05,
-      child: Row(
-        //crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const NavBarMain(),
-          Expanded(
-            child: NavBarContent(
-              controller: widget.controller,
-              titles: widget.titles,
-            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SizedBox(
+          height: (constraints.maxWidth > 1024) ? 40 : AppData.shared.height * 0.05,
+          child: Row(
+            children: [
+              NavBarMain(width: constraints.maxWidth,),
+              Expanded(
+                child: NavBarContent(
+                  controller: widget.controller,
+                  titles: widget.titles,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 

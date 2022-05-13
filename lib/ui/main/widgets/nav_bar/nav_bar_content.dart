@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/ui/main/widgets/nav_bar/contact_me_button.dart';
+import 'package:portfolio/ui/common_widgets/gradient_button.dart';
 
 import '../../../../utils/scaffold_keys.dart';
 
 class NavBarContent extends StatefulWidget {
   final TabController controller;
   final List<String> titles;
+
   const NavBarContent(
       {Key? key, required this.controller, required this.titles})
       : super(key: key);
@@ -35,13 +36,21 @@ class _NavBarContentState extends State<NavBarContent> {
                     child: TabBar(
                       controller: widget.controller,
                       tabs: widget.titles.map((e) => Text(e)).toList(),
-                      indicatorColor: Colors.deepOrange,
-                      labelColor: Colors.deepOrange,
+                      indicatorColor: Colors.white,
+                      labelColor: Colors.white,
                       labelPadding: const EdgeInsets.all(0),
                     ),
                   ),
                 )),
-                (width > 1024) ? const ContactMeButton() : const SizedBox(),
+                (width > 1024)
+                    ? Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: GradientButton(
+                          callBack: () {},
+                          title: "Contact Me",
+                        ),
+                    )
+                    : const SizedBox(),
               ],
             )
           : Align(
@@ -53,7 +62,7 @@ class _NavBarContentState extends State<NavBarContent> {
                 icon: const Icon(
                   Icons.menu_rounded,
                 ),
-                color: Colors.deepOrange,
+                color: Colors.green,
               ),
             ),
     );

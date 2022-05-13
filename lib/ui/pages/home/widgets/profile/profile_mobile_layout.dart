@@ -1,51 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../common_widgets/gradient_button.dart';
 
 class ProfileMobileLayout extends StatelessWidget {
-  const ProfileMobileLayout({Key? key}) : super(key: key);
+  final String? image;
+  final String? title;
+  final String? name;
+  final String? description;
+  const ProfileMobileLayout({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.name,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.network(
-          "https://firebasestorage.googleapis.com/v0/b/portfolio-1925a.appspot.com/o/profile%2Fprofile_pic.jpeg?alt=media&token=d0b038b4-039f-4932-a4eb-115da904cf10",
-          width: 150,
-          height: 150,
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              "Hy! I am",
-              style: TextStyle(
-                fontSize: 30,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const Text(
-              "Malith Dulan Kuruwita",
-              style: TextStyle(
-                fontSize: 30,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                "A lover of technology. An upright individual not afraid of getting out of the comfort zone and trying out new things. Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
+    return Padding(
+      padding: const EdgeInsets.all(25),
+      child: Column(
+        children: [
+          Image.network(
+            image ?? Constants.defaultUrl,
+            width: 150,
+            height: 150,
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                title ?? "",
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                ),
                 textAlign: TextAlign.center,
               ),
-            ),
-            Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: ElevatedButton(onPressed: () {}, child: Text("Hire Me")))
-          ],
-        )
-      ],
+              GradientText(
+                name ?? "",
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                ),
+                colors: const [
+                  Colors.green,
+                  Colors.blue,
+                ],
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  description ?? "",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF778899)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: GradientButton(
+                  title: "Hire Me",
+                  callBack: () {},
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
-    ;
   }
 }

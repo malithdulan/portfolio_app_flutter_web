@@ -7,8 +7,16 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black12,
+      color: Colors.black,
       height: AppData.shared.height * 0.05,
+      child: const Center(
+        child: Text(
+          "© 2022 Malith Dulan Kuruwita. All rights reserved.",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 }

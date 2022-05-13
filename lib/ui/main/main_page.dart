@@ -9,6 +9,8 @@ import 'package:portfolio/ui/pages/industrial_projects/industrial_projects_page.
 import 'package:portfolio/utils/app_data.dart';
 import 'package:portfolio/utils/scaffold_keys.dart';
 
+import '../common_widgets/gradient_button.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -44,26 +46,51 @@ class _MainPageState extends State<MainPage>
   Widget build(BuildContext context) {
     //set important app data
     AppData.shared.setDeviceValues(context);
-    return Scaffold(
-      key: ScaffoldKeys.mainKey,
-      endDrawer: CustomDrawer(controller: _controller, titles: _titles),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+    return LayoutBuilder(builder: (context, constraints) {
+      return Stack(
+        fit: StackFit.loose,
         children: [
-          NavBar(
-            controller: _controller,
-            titles: _titles,
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _controller,
-              children: _pages,
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFEAE5C9), Color(0xFF6CC6CB)],
+              ),
+            ),
+            child: Scaffold(
+              key: ScaffoldKeys.mainKey,
+              endDrawer: CustomDrawer(controller: _controller, titles: _titles),
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  NavBar(
+                    controller: _controller,
+                    titles: _titles,
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _controller,
+                      children: _pages,
+                    ),
+                  ),
+                  const Footer(),
+                ],
+              ),
             ),
           ),
-          const Footer(),
+          if (constraints.maxWidth < 1024 && constraints.maxWidth > 650)
+            Positioned(
+              top: 50,
+              left: 10,
+              child: GradientButton(
+                callBack: () {},
+                title: "Contact Me",
+              ),
+            ),
         ],
-      ),
-    );
+      );
+    });
   }
 
   @override

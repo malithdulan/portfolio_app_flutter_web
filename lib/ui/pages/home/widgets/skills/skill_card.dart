@@ -1,25 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/utils/utills.dart';
+
+import '../../../../../utils/constants.dart';
 
 class SkillCard extends StatelessWidget {
-  const SkillCard({Key? key}) : super(key: key);
+  final String? image;
+  final String? title;
+  final List<String>? types;
+  const SkillCard({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.types,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       child: Column(
         children: [
-          Image.asset("assets/images/android.png", width: double.infinity, height: 50,),
-          Expanded(child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("iOS Dev"),
-                Text("Can develope full native apps", textAlign: TextAlign.center,),
-                Text("UIKit / SwiftUI"),
-              ],
+          const SizedBox(
+            height: 10,
+          ),
+          SvgPicture.network(
+            image ?? Constants.defaultSvg,
+            width: double.infinity,
+            height: 75,
+            fit: BoxFit.cover,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    title ?? "",
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                  Text(
+                    Utils.shared.convertTypes(types),
+                    style: TextStyle(color: Colors.white, fontSize: 13),
+                  ),
+                ],
+              ),
             ),
-          ),)
+          )
         ],
       ),
     );
