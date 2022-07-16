@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/models/demo_projects.dart';
 import 'package:portfolio/ui/common_widgets/project_list_tile.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/data_provider.dart';
 
 class DemoProjectList extends StatelessWidget {
   final double screenSize;
@@ -19,11 +22,18 @@ class DemoProjectList extends StatelessWidget {
           automaticallyImplyLeading: false,
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return ProjectListTile(key: ValueKey("$index projectList"), screenSize: screenSize,);
-        },
-        itemCount: 5,
+      body: Selector<DataProvider, List<DemoProjects>?>(
+          selector: (context, provider) => provider.data?.data?.demoProjects,
+          builder: (context, data, child) => ListView.builder(
+            itemBuilder: (context, index) {
+              return ProjectListTile(
+                key: ValueKey("$index projectList"),
+                screenSize: screenSize,
+                index: index,
+              );
+            },
+            itemCount: 2,
+          ),
       ),
     );
   }

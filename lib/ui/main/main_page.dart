@@ -81,7 +81,7 @@ class _MainPageState extends State<MainPage>
           ),
           if (constraints.maxWidth < 1024 && constraints.maxWidth > 650)
             Positioned(
-              top: 50,
+              top: 40,
               left: 10,
               child: GradientButton(
                 callBack: () {},
