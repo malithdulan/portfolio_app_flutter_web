@@ -17,29 +17,38 @@ class ProjectListTile extends StatefulWidget {
 
 class _ProjectListTileState extends State<ProjectListTile> {
   _navigateToDetail(BuildContext context) {
-    Provider.of<PageSwitchProvider>(context, listen: false).changePage(DISPLAY_PAGE.detail);
-    Provider.of<DescriptionChangeProvider>(context, listen: false).changeIndex(widget.index);
+    _switchListAndDetail(DISPLAY_PAGE.detail);
+    _changePageDetail(widget.index);
   }
 
   _showDetail(BuildContext context) {
-    _changeListTileColor(context);
-    Provider.of<DescriptionChangeProvider>(context, listen: false).changeIndex(widget.index);
+    _changeListTileColor(context, widget.index);
+    _changePageDetail(widget.index);
   }
 
-  _changeListTileColor(BuildContext context) {
-    Provider.of<TileSelectionProvider>(context, listen: false).changeSelection(widget.index);
+  _changeListTileColor(BuildContext context, int index) {
+    Provider.of<TileSelectionProvider>(context, listen: false).changeSelection(index);
+  }
+
+  _changePageDetail(int index) {
+    Provider.of<DescriptionChangeProvider>(context, listen: false).changeIndex(index);
+  }
+
+  //switch between list and detail
+  _switchListAndDetail(DISPLAY_PAGE selection) {
+    Provider.of<PageSwitchProvider>(context, listen: false).changePage(selection);
   }
 
   _setInitialTileColor() {
     if (widget.screenSize > 1024) {
-      Provider.of<TileSelectionProvider>(context, listen: false).changeSelection(0);
-      Provider.of<DescriptionChangeProvider>(context, listen: false).changeIndex(0);
+      _changeListTileColor(context, 0);
+      _changePageDetail(0);
     }
   }
 
   @override
   void initState() {
-    //change style when screen width greater than 1024
+    //select first tile with description
     WidgetsBinding.instance
         ?.addPostFrameCallback((_) => _setInitialTileColor());
     super.initState();

@@ -26,7 +26,7 @@ class DemoProjectDescription extends StatelessWidget {
         preferredSize: const Size.fromHeight(40),
         child: AppBar(
           title: const Text(
-            "Details",
+            "Description",
           ),
           centerTitle: true,
           backgroundColor: Colors.green,
