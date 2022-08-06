@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/common_widgets/project_description_tile_bigger_layout.dart';
+import 'package:portfolio/ui/common_widgets/project_description_tile_mobile_layout.dart';
 
 class ProjectDescriptionTile extends StatelessWidget {
-  const ProjectDescriptionTile({Key? key}) : super(key: key);
+  final List<String>? imageList;
+  final String? description;
+  final double screenWidth;
+
+  const ProjectDescriptionTile({
+    Key? key,
+    required this.imageList,
+    required this.description,
+    required this.screenWidth,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      color: Colors.lightGreen,
-      width: double.infinity,
-      height: 300,
-      child: Row(
-        children: [
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset("assets/images/place_pot.png", fit: BoxFit.contain,),
-            ),
-          ),
-          const Flexible(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Example data',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+    return (screenWidth > 640)
+        ? ProjectDescriptionTileBiggerLayout(
+            imageList: imageList,
+            description: description,
           )
-        ],
-      ),
-    );
+        : ProjectDescriptionTileMobileLayout(
+            imageList: imageList,
+            description: description,
+          );
   }
 }

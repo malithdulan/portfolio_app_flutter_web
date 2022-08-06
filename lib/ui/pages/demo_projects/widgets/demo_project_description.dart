@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/models/demo_projects.dart';
 import 'package:portfolio/providers/description_change_provider.dart';
+import 'package:portfolio/ui/common_widgets/project_description_main_tile.dart';
 import 'package:portfolio/ui/common_widgets/project_description_tile.dart';
+import 'package:portfolio/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/page_switch_provider.dart';
@@ -49,9 +51,37 @@ class DemoProjectDescription extends StatelessWidget {
             Selector<DataProvider, List<DemoProjects>?>(
           selector: (context, provider) => provider.data?.data?.demoProjects,
           builder: (context, data, child) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [ProjectDescriptionTile()],
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return ProjectDescriptionMainTile(
+                    key: ValueKey("$index ${Constants.demoProjectDescriptionMainTile} "),
+                    screenWidth: screenSize,
+                    platform: data?[provider.index].platform,
+                    title: data?[provider.index].title,
+                    description: data?[provider.index].description,
+                    appIconUrl: data?[provider.index].appIconUrl,
+                    gitRepoUrl: data?[provider.index].gitRepoUrl,
+                    appUrl: data?[provider.index].appUrl,
+                    appVideoUrl: data?[provider.index].appVideoUrl,
+                    appFile: data?[provider.index].appFile,
+                    packages: data?[provider.index].packages,
+                  );
+                } else {
+                  return ProjectDescriptionTile(
+                    key: ValueKey("$index ${Constants.demoProjectDescriptionTile}"),
+                    imageList: data?[provider.index].appDetails?[index -1].picUrls,
+                    description:
+                        data?[provider.index].appDetails?[index -1].description,
+                    screenWidth: screenSize,
+                  );
+                }
+              },
+              itemCount: data?[provider.index].appDetails?.length != null
+                  ? data![provider.index].appDetails!.length + 1
+                  : null,
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(top: 8),
             );
           },
         ),

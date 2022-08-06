@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/app_data.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../models/ratio.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
   //singleton implementation
@@ -46,5 +47,37 @@ class Utils {
     double footerHeight = AppData.shared.height * 0.05;
     double appBarHeight = (width > 1024) ? 40 : AppData.shared.height * 0.05;
     return height - appBarHeight - footerHeight;
+  }
+
+  //lunch given url in web
+  Future<void> lunchUrl(String? url) async {
+    try {
+      Uri? uri;
+      if (url != null && url.isNotEmpty) {
+        Map<String, String>? params;
+        if (url.contains("?")) {
+          //it's done like this because I know there is only one parameter
+          List<String> queryString = url.split("?").last.split("=");
+          params = {queryString.first: queryString.last};
+        }
+        String host = url.split("//")[1].split("/").first;
+        uri = Uri(
+          scheme: "https",
+          host: host,
+          path: url.split("$host/").last.split("?").first,
+          queryParameters: params,
+        );
+      }
+      if (uri != null && !await launchUrl(uri)) {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          fontSize: 16.0);
+    }
   }
 }

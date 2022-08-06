@@ -3,6 +3,7 @@ import 'package:portfolio/models/demo_projects.dart';
 import 'package:portfolio/ui/common_widgets/project_list_tile.dart';
 import 'package:provider/provider.dart';
 import '../../../../providers/data_provider.dart';
+import '../../../../utils/constants.dart';
 
 class DemoProjectList extends StatelessWidget {
   final double screenSize;
@@ -23,17 +24,23 @@ class DemoProjectList extends StatelessWidget {
         ),
       ),
       body: Selector<DataProvider, List<DemoProjects>?>(
-          selector: (context, provider) => provider.data?.data?.demoProjects,
-          builder: (context, data, child) => ListView.builder(
-            itemBuilder: (context, index) {
-              return ProjectListTile(
-                key: ValueKey("$index projectList"),
-                screenSize: screenSize,
-                index: index,
-              );
-            },
-            itemCount: 2,
-          ),
+        selector: (context, provider) => provider.data?.data?.demoProjects,
+        builder: (context, data, child) => ListView.builder(
+          controller: ScrollController(),
+          itemBuilder: (context, index) {
+            return ProjectListTile(
+              key: ValueKey("$index ${Constants.demoProjectListTile}"),
+              screenSize: screenSize,
+              index: index,
+              projectIconUrl: data?[index].appIconUrl,
+              projectName: data?[index].title,
+              projectPlatform: data?[index].platform,
+            );
+          },
+          itemCount: data?.length,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 5),
+        ),
       ),
     );
   }
