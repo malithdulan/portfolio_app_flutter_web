@@ -40,18 +40,20 @@ class ProjectDescriptionCommonTile extends StatelessWidget {
                   ),
                 ),
               ),
-            if (clickableContent != null)
-              InkWell(
-                child: Text(
-                  clickableContent ?? "",
-                  style: const TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.blue,
-                    fontSize: 16,
+            if (clickableContent != null && clickableContent != "")
+              Flexible(
+                child: InkWell(
+                  child: Text(
+                    clickableContent ?? "",
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
                   ),
+                  onTap: () => Utils.shared.lunchUrl(clickableContent),
+                  mouseCursor: SystemMouseCursors.click,
                 ),
-                onTap: () => Utils.shared.lunchUrl(clickableContent),
-                mouseCursor: SystemMouseCursors.click,
               ),
             if (libraries != null && libraries!.isNotEmpty)
               Expanded(

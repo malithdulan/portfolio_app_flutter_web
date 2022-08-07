@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/common_widgets/project_description_common_tile.dart';
 import 'package:portfolio/ui/common_widgets/project_download_button.dart';
+import 'package:portfolio/ui/common_widgets/project_video.dart';
 
 import '../../utils/constants.dart';
 
@@ -101,9 +102,17 @@ class ProjectDescriptionMainTile extends StatelessWidget {
               libraries: packages,
               sizeBoxHeight: 8,
             ),
+            ProjectVideo(videoUrl: appVideoUrl),
             Text(
               description ?? "",
+              textAlign: (screenWidth <= 500) ? TextAlign.center : TextAlign.start,
             ),
+            if (screenWidth <= 550 && (appFile != null && appFile != ""))
+              const SizedBox(
+                height: 8,
+              ),
+            if (screenWidth <= 550 && (appFile != null && appFile != ""))
+              ProjectDownloadButton(downloadProject: () {})
           ],
         ),
       ),

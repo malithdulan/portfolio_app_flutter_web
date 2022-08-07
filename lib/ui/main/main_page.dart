@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/providers/player_fullscreen_selection_provider.dart';
 import 'package:portfolio/ui/main/widgets/custom_drawer.dart';
 import 'package:portfolio/ui/main/widgets/footer.dart';
 import 'package:portfolio/ui/main/widgets/nav_bar/nav_bar.dart';
@@ -8,7 +9,8 @@ import 'package:portfolio/ui/pages/home/home_page.dart';
 import 'package:portfolio/ui/pages/industrial_projects/industrial_projects_page.dart';
 import 'package:portfolio/utils/app_data.dart';
 import 'package:portfolio/utils/scaffold_keys.dart';
-
+import 'package:provider/provider.dart';
+import '../common_widgets/fullscreen_video_player.dart';
 import '../common_widgets/gradient_button.dart';
 
 class MainPage extends StatefulWidget {
@@ -61,20 +63,36 @@ class _MainPageState extends State<MainPage>
             child: Scaffold(
               key: ScaffoldKeys.mainKey,
               endDrawer: CustomDrawer(controller: _controller, titles: _titles),
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              body: Stack(
                 children: [
-                  NavBar(
-                    controller: _controller,
-                    titles: _titles,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      NavBar(
+                        controller: _controller,
+                        titles: _titles,
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          controller: _controller,
+                          children: _pages,
+                        ),
+                      ),
+                      const Footer(),
+                    ],
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      controller: _controller,
-                      children: _pages,
-                    ),
-                  ),
-                  const Footer(),
+                  Consumer<PlayerFullscreenSelectionProvider>(
+                    builder: (context, provider, child) => provider.isSelected
+                        ? Positioned(
+                            top: 0,
+                            left: 0,
+                            child: FullscreenVideoPlayer(
+                              videoUrl: provider.videoUrl,
+                              duration: provider.duration,
+                            ),
+                          )
+                        : const SizedBox(),
+                  )
                 ],
               ),
             ),

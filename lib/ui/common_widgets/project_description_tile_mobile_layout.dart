@@ -35,6 +35,7 @@ class ProjectDescriptionTileMobileLayout extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 )
               ],
