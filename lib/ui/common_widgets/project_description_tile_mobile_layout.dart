@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/ui/common_widgets/image_slider.dart';
 
 class ProjectDescriptionTileMobileLayout extends StatelessWidget {
   final List<String>? imageList;
@@ -23,11 +23,7 @@ class ProjectDescriptionTileMobileLayout extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return Column(
               children: [
-                Image.network(
-                  imageList?.first ?? Constants.placeholderImage,
-                  width: constraints.maxWidth * 0.5,
-                  fit: BoxFit.contain,
-                ),
+                ImageSlider(images: imageList, width: constraints.maxWidth),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

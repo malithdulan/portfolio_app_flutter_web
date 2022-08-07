@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/models/offered_by.dart';
 import 'package:portfolio/models/ratio.dart';
 import 'package:portfolio/utils/utills.dart';
+import '../../../../../providers/image_fullscreen_selection_provider.dart';
 import '../../../../../utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class QualificationCard extends StatelessWidget {
   final double screenWidth;
@@ -15,6 +17,15 @@ class QualificationCard extends StatelessWidget {
     required this.image,
     required this.offeredBy,
   }) : super(key: key);
+
+  //show image in fullscreen
+  _showFullscreenImage(BuildContext context) {
+    Provider.of<ImageFullscreenSelectionProvider>(context, listen: false)
+        .changeSelection(
+      isSelected: true,
+      url: image,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +45,15 @@ class QualificationCard extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: (snapshot.data?.width ?? 1) /
                       (snapshot.data?.height ?? 1),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(image ?? Constants.defaultUrl),
-                        fit: BoxFit.cover,
+                  child: InkWell(
+                    mouseCursor: SystemMouseCursors.click,
+                    onTap: () => _showFullscreenImage(context),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(image ?? Constants.defaultUrl),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

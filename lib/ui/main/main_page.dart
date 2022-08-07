@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/providers/image_fullscreen_selection_provider.dart';
 import 'package:portfolio/providers/player_fullscreen_selection_provider.dart';
+import 'package:portfolio/ui/common_widgets/fullscreen_image_viewer.dart';
 import 'package:portfolio/ui/main/widgets/custom_drawer.dart';
 import 'package:portfolio/ui/main/widgets/footer.dart';
 import 'package:portfolio/ui/main/widgets/nav_bar/nav_bar.dart';
@@ -84,11 +86,22 @@ class _MainPageState extends State<MainPage>
                   Consumer<PlayerFullscreenSelectionProvider>(
                     builder: (context, provider, child) => provider.isSelected
                         ? Positioned(
-                            top: 0,
+                            top: 8,
                             left: 0,
                             child: FullscreenVideoPlayer(
                               videoUrl: provider.videoUrl,
                               duration: provider.duration,
+                            ),
+                          )
+                        : const SizedBox(),
+                  ),
+                  Consumer<ImageFullscreenSelectionProvider>(
+                    builder: (context, provider, child) => provider.isSelected
+                        ? Positioned(
+                            top: 0,
+                            left: 0,
+                            child: FullscreenImageViewer(
+                              imageUrl: provider.imageUrl,
                             ),
                           )
                         : const SizedBox(),

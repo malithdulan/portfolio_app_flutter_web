@@ -102,6 +102,7 @@ class ProjectDescriptionMainTile extends StatelessWidget {
               libraries: packages,
               sizeBoxHeight: 8,
             ),
+            if (appVideoUrl != null && appVideoUrl != "")
             ProjectVideo(videoUrl: appVideoUrl),
             Text(
               description ?? "",

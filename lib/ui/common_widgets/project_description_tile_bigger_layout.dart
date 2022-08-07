@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/ui/common_widgets/image_slider.dart';
 
 class ProjectDescriptionTileBiggerLayout extends StatelessWidget {
   final List<String>? imageList;
@@ -17,15 +17,11 @@ class ProjectDescriptionTileBiggerLayout extends StatelessWidget {
       margin: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
       color: Colors.green.withOpacity(0.2),
       width: double.infinity,
-      height: 300,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Image.network(
-              imageList?.first ?? Constants.placeholderImage,
-              fit: BoxFit.contain,
-            ),
+            ImageSlider(images: imageList, width: 300,),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
