@@ -31,7 +31,7 @@ class ImageCard extends StatelessWidget {
           fit: BoxFit.contain,
           colorFilter: const ColorFilter.mode(
             Colors.black12,
-            BlendMode.darken,
+            BlendMode.lighten,
           ),
         ) : null,
         boxShadow: shadow

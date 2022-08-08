@@ -9,12 +9,13 @@ class Footer extends StatelessWidget {
     return Container(
       color: Colors.black,
       height: AppData.shared.height * 0.05,
-      child: const Center(
+      child: Center(
         child: Text(
-          "© 2022 Malith Dulan Kuruwita. All rights reserved.",
-          style: TextStyle(
+          "Copyright © ${DateTime.now().year} Malith Dulan Kuruwita. All rights reserved.",
+          style: const TextStyle(
             color: Colors.white,
           ),
+          textAlign: TextAlign.center,
         ),
       ),
     );

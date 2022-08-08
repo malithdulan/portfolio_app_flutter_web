@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage>
             ),
             child: Scaffold(
               key: ScaffoldKeys.mainKey,
-              endDrawer: CustomDrawer(controller: _controller, titles: _titles),
+              endDrawer: CustomDrawer(controller: _controller),
               body: Stack(
                 children: [
                   Column(
@@ -110,7 +110,7 @@ class _MainPageState extends State<MainPage>
               ),
             ),
           ),
-          if (constraints.maxWidth < 1024 && constraints.maxWidth > 650)
+          if (constraints.maxWidth < 1024 && constraints.maxWidth > 667)
             Positioned(
               top: 40,
               left: 10,

@@ -3,6 +3,7 @@ import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/ui/common_widgets/project_description_common_tile.dart';
 import 'package:portfolio/ui/common_widgets/project_download_button.dart';
 import 'package:portfolio/ui/common_widgets/project_video.dart';
+import 'package:portfolio/utils/utils.dart';
 
 class ProjectDescriptionMainTile extends StatelessWidget {
   final double screenWidth;
@@ -79,7 +80,7 @@ class ProjectDescriptionMainTile extends StatelessWidget {
                   ],
                 ),
                 if (screenWidth > 550 && (appFile != null && appFile != ""))
-                  ProjectDownloadButton(downloadProject: () {}),
+                  ProjectDownloadButton(downloadProject: () => Utils.shared.downloadFile(appFile)),
               ],
             ),
             const SizedBox(
@@ -112,7 +113,7 @@ class ProjectDescriptionMainTile extends StatelessWidget {
                 height: 8,
               ),
             if (screenWidth <= 550 && (appFile != null && appFile != ""))
-              ProjectDownloadButton(downloadProject: () {})
+              ProjectDownloadButton(downloadProject: () => Utils.shared.downloadFile(appFile))
           ],
         ),
       ),

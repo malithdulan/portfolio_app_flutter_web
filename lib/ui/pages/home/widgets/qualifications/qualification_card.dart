@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/models/offered_by.dart';
 import 'package:portfolio/models/ratio.dart';
 import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
+import 'package:portfolio/ui/common_widgets/loading_item.dart';
 import 'package:portfolio/utils/utils.dart';
 import '../../../../../providers/image_fullscreen_selection_provider.dart';
 import '../../../../../utils/constants.dart';
@@ -89,7 +90,19 @@ class QualificationCard extends StatelessWidget {
         } else if (snapshot.hasError) {
           return const SizedBox();
         } else {
-          return const SizedBox();
+          return Container(
+            width: screenWidth * 0.5,
+            height: screenWidth * 0.5,
+            color: Colors.black26,
+            margin: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const SizedBox(
+              width: 75,
+              height: 75,
+              child: Center(
+                child: LoadingItem(),
+              ),
+            ),
+          );
         }
       },
     );

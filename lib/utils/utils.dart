@@ -4,6 +4,8 @@ import 'package:portfolio/utils/app_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/ratio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
 
 class Utils {
   //singleton implementation
@@ -79,5 +81,12 @@ class Utils {
           timeInSecForIosWeb: 1,
           fontSize: 16.0);
     }
+  }
+
+  //download file from the given url (only for flutter web)
+  void downloadFile(String? url) {
+    html.AnchorElement anchorElement =  html.AnchorElement(href: url);
+    anchorElement.download = url;
+    anchorElement.click();
   }
 }
