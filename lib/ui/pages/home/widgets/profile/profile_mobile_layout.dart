@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../common_widgets/gradient_button.dart';
 
 class ProfileMobileLayout extends StatelessWidget {
@@ -8,6 +8,7 @@ class ProfileMobileLayout extends StatelessWidget {
   final String? title;
   final String? name;
   final String? description;
+
   const ProfileMobileLayout({
     Key? key,
     required this.image,
@@ -22,8 +23,8 @@ class ProfileMobileLayout extends StatelessWidget {
       padding: const EdgeInsets.all(25),
       child: Column(
         children: [
-          Image.network(
-            image ?? Constants.defaultUrl,
+          CustomNetworkImage(
+            imageUrl: image,
             width: 150,
             height: 150,
           ),

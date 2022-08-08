@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:portfolio/providers/image_fullscreen_selection_provider.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../utils/constants.dart';
 import 'package:provider/provider.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -40,10 +40,7 @@ class _ImageSliderState extends State<ImageSlider> {
             itemCount: widget.images?.length,
             itemBuilder: (context, index, realIndex) {
               return InkWell(
-                child: Image.network(
-                  widget.images?[index] ?? Constants.placeholderImage,
-                  fit: BoxFit.contain,
-                ),
+                child: CustomNetworkImage(imageUrl: widget.images?[index]),
                 mouseCursor: SystemMouseCursors.click,
                 onTap: () => _showFullscreenImage(index),
               );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/ui/common_widgets/gradient_button.dart';
-import 'package:portfolio/utils/constants.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class ProfileDesktopLayout extends StatelessWidget {
@@ -8,6 +8,7 @@ class ProfileDesktopLayout extends StatelessWidget {
   final String? title;
   final String? name;
   final String? description;
+
   const ProfileDesktopLayout({
     Key? key,
     required this.image,
@@ -22,11 +23,10 @@ class ProfileDesktopLayout extends StatelessWidget {
       padding: const EdgeInsets.all(40),
       child: Row(
         children: [
-          Image.network(
-            image ?? Constants.defaultUrl,
+          CustomNetworkImage(
+            imageUrl: image,
             width: 200,
             height: 200,
-            fit: BoxFit.cover,
           ),
           const SizedBox(
             width: 50,
@@ -61,12 +61,17 @@ class ProfileDesktopLayout extends StatelessWidget {
                 ),
                 Text(
                   description ?? "",
-                  style:
-                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF778899)),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF778899)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: GradientButton(title: "Hire Me", callBack: () {},),
+                  child: GradientButton(
+                    title: "Hire Me",
+                    callBack: () {},
+                  ),
                 )
               ],
             ),

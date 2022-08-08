@@ -21,7 +21,7 @@ class _NavBarContentState extends State<NavBarContent> {
     double width = MediaQuery.of(context).size.width;
 
     return LayoutBuilder(
-      builder: (context, constraints) => (width > 650)
+      builder: (context, constraints) => (width > 667)
           ? Row(
               children: [
                 Expanded(

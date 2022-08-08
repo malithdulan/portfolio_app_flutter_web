@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/utils/utills.dart';
-
-import '../../../../../utils/constants.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_svg_image.dart';
+import 'package:portfolio/utils/utils.dart';
 
 class SkillCard extends StatelessWidget {
   final String? image;
   final String? title;
   final List<String>? types;
+
   const SkillCard({
     Key? key,
     required this.image,
@@ -24,15 +23,14 @@ class SkillCard extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          SvgPicture.network(
-            image ?? Constants.defaultSvg,
-            width: double.infinity,
+          CustomNetworkSvgImage(
+            imageUrl: image,
+            width: 75,
             height: 75,
-            fit: BoxFit.cover,
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

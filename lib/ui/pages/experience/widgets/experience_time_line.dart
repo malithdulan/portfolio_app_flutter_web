@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:timelines/timelines.dart';
 import '../../../../models/experience.dart';
@@ -41,14 +41,10 @@ class ExperienceTimeLine extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
-                    Container(
+                    CustomNetworkImage(
+                      imageUrl: data?[index].picUrl,
                       width: 100,
                       height: 100,
-                      color: Colors.white,
-                      child: Image.network(
-                        data?[index].picUrl ?? Constants.placeholderImage,
-                        fit: BoxFit.contain,
-                      ),
                     ),
                     const SizedBox(
                       height: 8,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/ui/common_widgets/project_description_common_tile.dart';
 import 'package:portfolio/ui/common_widgets/project_download_button.dart';
 import 'package:portfolio/ui/common_widgets/project_video.dart';
-
-import '../../utils/constants.dart';
 
 class ProjectDescriptionMainTile extends StatelessWidget {
   final double screenWidth;
@@ -49,11 +48,10 @@ class ProjectDescriptionMainTile extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      appIconUrl ?? Constants.placeholderImage,
+                    CustomNetworkImage(
+                      imageUrl: appIconUrl,
                       width: 80,
                       height: 80,
-                      fit: BoxFit.contain,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
@@ -103,10 +101,11 @@ class ProjectDescriptionMainTile extends StatelessWidget {
               sizeBoxHeight: 8,
             ),
             if (appVideoUrl != null && appVideoUrl != "")
-            ProjectVideo(videoUrl: appVideoUrl),
+              ProjectVideo(videoUrl: appVideoUrl),
             Text(
               description ?? "",
-              textAlign: (screenWidth <= 500) ? TextAlign.center : TextAlign.start,
+              textAlign:
+                  (screenWidth <= 500) ? TextAlign.center : TextAlign.start,
             ),
             if (screenWidth <= 550 && (appFile != null && appFile != ""))
               const SizedBox(

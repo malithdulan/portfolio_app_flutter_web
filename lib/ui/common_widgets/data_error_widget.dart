@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/utils/utills.dart';
+import 'package:portfolio/utils/utils.dart';
 import 'package:lottie/lottie.dart';
 
 class DataErrorWidget extends StatelessWidget {

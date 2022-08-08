@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/models/offered_by.dart';
 import 'package:portfolio/models/ratio.dart';
-import 'package:portfolio/utils/utills.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
+import 'package:portfolio/utils/utils.dart';
 import '../../../../../providers/image_fullscreen_selection_provider.dart';
 import '../../../../../utils/constants.dart';
 import 'package:provider/provider.dart';
@@ -48,14 +49,7 @@ class QualificationCard extends StatelessWidget {
                   child: InkWell(
                     mouseCursor: SystemMouseCursors.click,
                     onTap: () => _showFullscreenImage(context),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(image ?? Constants.defaultUrl),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    child: CustomNetworkImage(imageUrl: image),
                   ),
                 ),
                 const Padding(

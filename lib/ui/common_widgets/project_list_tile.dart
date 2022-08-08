@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/providers/description_change_provider.dart';
 import 'package:portfolio/providers/page_switch_provider.dart';
-import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/utils/enums.dart';
 import 'package:provider/provider.dart';
 
@@ -63,9 +63,10 @@ class ProjectListTile extends StatelessWidget {
               selected: index == provider.selectedItem,
               selectedTileColor: Colors.green.shade700,
               mouseCursor: SystemMouseCursors.click,
-              leading: Image.network(
-                projectIconUrl ?? Constants.placeholderImage,
-                fit: BoxFit.contain,
+              leading: CustomNetworkImage(
+                imageUrl: projectIconUrl,
+                width: 50,
+                height: 50,
               ),
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 3),
