@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TileSelectionProvider extends ChangeNotifier {
+class IndustrialTileSelectionProvider extends ChangeNotifier {
 
   int _selectedItem = -1;
 

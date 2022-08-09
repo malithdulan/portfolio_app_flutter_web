@@ -14,4 +14,8 @@ class Constants {
   static const String demoProjectDescriptionTile = "demoProjectDescriptionTile";
   static const String demoProjectDescriptionMainTile = "demoProjectDescriptionMainTile";
   static const String demoProjectListTile = "demoProjectListTile";
+
+  static const String industrialProjectDescriptionTile = "industrialProjectDescriptionTile";
+  static const String industrialProjectDescriptionMainTile = "industrialProjectDescriptionMainTile";
+  static const String industrialProjectListTile = "industrialProjectListTile";
 }

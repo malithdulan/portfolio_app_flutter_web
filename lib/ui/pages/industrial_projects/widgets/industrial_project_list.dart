@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio/models/industrial_projects.dart';
+import 'package:provider/provider.dart';
+import '../../../../providers/data_provider.dart';
+import '../../../../utils/constants.dart';
+import '../../../common_widgets/project_list_tile.dart';
+
+class IndustrialProjectList extends StatelessWidget {
+  final double screenSize;
+  const IndustrialProjectList({Key? key, required this.screenSize}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: AppBar(
+          title: const Text(
+            "Projects",
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.green,
+          automaticallyImplyLeading: false,
+        ),
+      ),
+      body: Selector<DataProvider, List<IndustrialProjects>?>(
+        selector: (context, provider) => provider.data?.data?.industrialProjects,
+        builder: (context, data, child) => ListView.builder(
+          controller: ScrollController(),
+          itemBuilder: (context, index) {
+            return ProjectListTile(
+              key: ValueKey("$index ${Constants.industrialProjectListTile}"),
+              screenSize: screenSize,
+              index: index,
+              projectIconUrl: data?[index].appIconUrl,
+              projectName: data?[index].title,
+              projectPlatform: data?[index].platform,
+            );
+          },
+          itemCount: data?.length,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 5),
+        ),
+      ),
+    );
+  }
+}

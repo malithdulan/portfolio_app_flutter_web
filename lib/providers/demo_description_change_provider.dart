@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DescriptionChangeProvider extends ChangeNotifier {
+class DemoDescriptionChangeProvider extends ChangeNotifier {
 
   int _index = 0;
 

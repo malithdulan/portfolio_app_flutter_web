@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/models/demo_projects.dart';
-import 'package:portfolio/providers/description_change_provider.dart';
+import 'package:portfolio/providers/demo_description_change_provider.dart';
 import 'package:portfolio/ui/common_widgets/project_description_main_tile.dart';
 import 'package:portfolio/ui/common_widgets/project_description_tile.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../providers/page_switch_provider.dart';
+import '../../../../providers/demo_page_switch_provider.dart';
 import '../../../../utils/enums.dart';
 import '../../../../providers/data_provider.dart';
 
@@ -17,7 +17,7 @@ class DemoProjectDescription extends StatelessWidget {
       : super(key: key);
 
   _exitFromDetailsPage(BuildContext context) {
-    Provider.of<PageSwitchProvider>(context, listen: false)
+    Provider.of<DemoPageSwitchProvider>(context, listen: false)
         .changePage(DISPLAY_PAGE.list);
   }
 
@@ -46,7 +46,7 @@ class DemoProjectDescription extends StatelessWidget {
               : [],
         ),
       ),
-      body: Consumer<DescriptionChangeProvider>(
+      body: Consumer<DemoDescriptionChangeProvider>(
         builder: (context, provider, child) =>
             Selector<DataProvider, List<DemoProjects>?>(
           selector: (context, provider) => provider.data?.data?.demoProjects,
