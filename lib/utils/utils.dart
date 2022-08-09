@@ -1,9 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:portfolio/models/contact_details.dart';
+import 'package:portfolio/providers/data_provider.dart';
+import 'package:portfolio/ui/common_widgets/contact_dialog.dart';
 import 'package:portfolio/utils/app_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/ratio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
@@ -85,8 +90,28 @@ class Utils {
 
   //download file from the given url (only for flutter web)
   void downloadFile(String? url) {
-    html.AnchorElement anchorElement =  html.AnchorElement(href: url);
+    html.AnchorElement anchorElement = html.AnchorElement(href: url);
     anchorElement.download = url;
     anchorElement.click();
+  }
+
+  showPopupDialog(BuildContext context) {
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Selector<DataProvider, ContactDetails?>(
+          selector: (context, provider) => provider.data?.data?.contactDetails,
+          builder: (context, provider, child) {
+            return ContactDialog(
+              phoneNo: provider?.phoneNo,
+              emailAddress: provider?.emailAddress,
+              homeAddress: provider?.homeAddress,
+              platforms: provider?.codingPlatforms,
+            );
+          },
+        );
+      },
+    );
   }
 }

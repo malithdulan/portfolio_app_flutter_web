@@ -1,3 +1,5 @@
+import 'package:portfolio/models/contact_details.dart';
+
 import 'profile.dart';
 import 'qualifications.dart';
 import 'skills.dart';
@@ -6,6 +8,7 @@ import 'experience.dart';
 import 'industrial_projects.dart';
 
 /// profile : {"pic_url":"","title":"","name":"","description":"hey"}
+/// contact_details: {"phone_no": "", "email_address": "", "home_address": "", "coding_platforms":[{"platform_pic": "", "platform_name": "", "priority": "", "platform_url": ""}]}
 /// skills : [{"pic_url":"","title":"iOS Dev","description":"","types":["UIKit","SwiftUI"]},{"pic_url":"","title":"Android Dev","description":"","types":["Components","Compose"]},{"pic_url":"","title":"Flutter Dev","description":"","types":["iOS/Android","Web"]}]
 /// qualifications : [{"title":"","pic_url":"","description":"","offered_by":[{"title":"","pic_url":""}]}]
 /// experience : [{"time_period":"","company_name":"","pic_url":"","description":""}]
@@ -14,6 +17,7 @@ import 'industrial_projects.dart';
 
 class FirebaseData {
   Profile? profile;
+  ContactDetails? contactDetails;
   List<Skills>? skills;
   List<Qualifications>? qualifications;
   List<Experience>? experience;
@@ -21,7 +25,8 @@ class FirebaseData {
   List<DemoProjects>? demoProjects;
 
   FirebaseData({
-      this.profile, 
+      this.profile,
+      this.contactDetails,
       this.skills, 
       this.qualifications, 
       this.experience, 
@@ -36,6 +41,7 @@ class FirebaseData {
         skills?.add(Skills.fromJson(v));
       });
     }
+    contactDetails = json['contact_details'] != null ? ContactDetails.fromJson(json['contact_details']) : null;
     if (json['qualifications'] != null) {
       qualifications = [];
       json['qualifications'].forEach((v) {

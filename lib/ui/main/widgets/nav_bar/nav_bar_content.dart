@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/common_widgets/gradient_button.dart';
+import 'package:portfolio/utils/utils.dart';
 
 import '../../../../utils/scaffold_keys.dart';
 
@@ -46,7 +47,7 @@ class _NavBarContentState extends State<NavBarContent> {
                     ? Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: GradientButton(
-                          callBack: () {},
+                          callBack: () => Utils.shared.showPopupDialog(context),
                           title: "Contact Me",
                         ),
                     )

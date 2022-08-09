@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:portfolio/providers/theme_provider.dart';
+import 'package:portfolio/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -41,13 +42,14 @@ class _DrawerState extends State<CustomDrawer> {
                 title: Text(value),
                 onTap: () {
                   if (_titles[index] == "Contact Me") {
-                    print("clicked");
+                    Navigator.pop(context);
+                    Utils.shared.showPopupDialog(context);
                   } else {
                     setState(() {
                       widget.controller.index = index;
+                      Navigator.pop(context);
                     });
                   }
-                  Navigator.pop(context);
                 },
               ))
                   .toList(),

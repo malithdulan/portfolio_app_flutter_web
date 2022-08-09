@@ -11,6 +11,7 @@ import 'package:portfolio/ui/pages/home/home_page.dart';
 import 'package:portfolio/ui/pages/industrial_projects/industrial_projects_page.dart';
 import 'package:portfolio/utils/app_data.dart';
 import 'package:portfolio/utils/scaffold_keys.dart';
+import 'package:portfolio/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../common_widgets/fullscreen_video_player.dart';
 import '../common_widgets/gradient_button.dart';
@@ -115,7 +116,7 @@ class _MainPageState extends State<MainPage>
               top: 40,
               left: 10,
               child: GradientButton(
-                callBack: () {},
+                callBack: () => Utils.shared.showPopupDialog(context),
                 title: "Contact Me",
               ),
             ),

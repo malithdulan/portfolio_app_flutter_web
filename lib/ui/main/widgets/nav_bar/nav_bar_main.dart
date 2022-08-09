@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/providers/theme_provider.dart';
+import 'package:portfolio/utils/app_data.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -30,6 +31,13 @@ class NavBarMain extends StatelessWidget {
           Consumer<ThemeProvider>(builder: (context, provider, child) {
             return IconButton(
               onPressed: () {
+                //set appdata theme
+                if (provider.mode == ThemeMode.dark) {
+                  AppData.shared.mode = ThemeMode.light;
+                } else {
+                  AppData.shared.mode = ThemeMode.dark;
+                }
+                //trigger change theme
                 Provider.of<ThemeProvider>(context, listen: false)
                     .changeTheme(provider.mode == ThemeMode.dark
                     ? ThemeMode.light

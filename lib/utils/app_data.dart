@@ -11,6 +11,11 @@ class AppData {
 
   late double height;
   late double width;
+  ThemeMode mode = ThemeMode.light;
+
+  void setThemeMode(ThemeMode mode) {
+    mode = mode;
+  }
 
   void setDeviceValues(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
