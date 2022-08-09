@@ -102,7 +102,7 @@ class ProjectDescriptionMainTile extends StatelessWidget {
               sizeBoxHeight: 8,
             ),
             if (appVideoUrl != null && appVideoUrl != "")
-              ProjectVideo(videoUrl: appVideoUrl),
+              ProjectVideo(key: ValueKey(title), videoUrl: appVideoUrl),
             Text(
               description ?? "",
               textAlign:

@@ -87,7 +87,7 @@ class _MainPageState extends State<MainPage>
                   Consumer<PlayerFullscreenSelectionProvider>(
                     builder: (context, provider, child) => provider.isSelected
                         ? Positioned(
-                            top: 8,
+                            top: 0,
                             left: 0,
                             child: FullscreenVideoPlayer(
                               videoUrl: provider.videoUrl,
