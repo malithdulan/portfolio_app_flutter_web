@@ -79,7 +79,7 @@ class DemoProjectDescription extends StatelessWidget {
               },
               itemCount: data?[provider.index].appDetails?.length != null
                   ? data![provider.index].appDetails!.length + 1
-                  : null,
+                  : 1,
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(top: 8),
             );

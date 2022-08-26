@@ -4,9 +4,7 @@ import 'package:portfolio/models/ratio.dart';
 import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/ui/common_widgets/loading_item.dart';
 import 'package:portfolio/utils/utils.dart';
-import '../../../../../providers/image_fullscreen_selection_provider.dart';
 import '../../../../../utils/constants.dart';
-import 'package:provider/provider.dart';
 
 class QualificationCard extends StatelessWidget {
   final double screenWidth;
@@ -19,15 +17,6 @@ class QualificationCard extends StatelessWidget {
     required this.image,
     required this.offeredBy,
   }) : super(key: key);
-
-  //show image in fullscreen
-  _showFullscreenImage(BuildContext context) {
-    Provider.of<ImageFullscreenSelectionProvider>(context, listen: false)
-        .changeSelection(
-      isSelected: true,
-      url: image,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +38,7 @@ class QualificationCard extends StatelessWidget {
                       (snapshot.data?.height ?? 1),
                   child: InkWell(
                     mouseCursor: SystemMouseCursors.click,
-                    onTap: () => _showFullscreenImage(context),
+                    onTap: () => Utils.shared.showFullscreenImage(context, image),
                     child: CustomNetworkImage(imageUrl: image),
                   ),
                 ),

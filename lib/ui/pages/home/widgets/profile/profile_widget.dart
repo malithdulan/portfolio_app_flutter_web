@@ -25,12 +25,14 @@ class ProfileWidget extends StatelessWidget {
                         image: provider.data?.data?.profile?.picUrl,
                         description: provider.data?.data?.profile?.description,
                         name: provider.data?.data?.profile?.name,
+                        cvUrl: provider.data?.data?.profile?.cvUrl,
                       )
                     : ProfileMobileLayout(
                         title: provider.data?.data?.profile?.title,
                         image: provider.data?.data?.profile?.picUrl,
                         description: provider.data?.data?.profile?.description,
                         name: provider.data?.data?.profile?.name,
+                        cvUrl: provider.data?.data?.profile?.cvUrl,
                       );
               case LOADING_STATUS.error:
                 return const DataErrorWidget();

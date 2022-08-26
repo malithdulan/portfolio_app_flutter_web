@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
+import '../providers/image_fullscreen_selection_provider.dart';
+
 class Utils {
   //singleton implementation
   Utils._privateConstructor(); //private constructor
@@ -112,6 +114,15 @@ class Utils {
           },
         );
       },
+    );
+  }
+
+  //show image in fullscreen
+  showFullscreenImage(BuildContext context, String? url) {
+    Provider.of<ImageFullscreenSelectionProvider>(context, listen: false)
+        .changeSelection(
+      isSelected: true,
+      url: url,
     );
   }
 }

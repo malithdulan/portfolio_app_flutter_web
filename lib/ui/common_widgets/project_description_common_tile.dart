@@ -24,7 +24,7 @@ class ProjectDescriptionCommonTile extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if ((content != null && content != "") || libraries != null || (clickableContent != null && clickableContent != ""))
+            if ((content != null && content != "") || (clickableContent != null && clickableContent != "") || (libraries != null && libraries!.isNotEmpty))
               Text(
                 heading ?? "",
                 style: const TextStyle(
@@ -66,7 +66,7 @@ class ProjectDescriptionCommonTile extends StatelessWidget {
               )
           ],
         ),
-        if ((content != null && content != "") || libraries != null || (clickableContent != null && clickableContent != ""))
+        if ((content != null && content != "") || (clickableContent != null && clickableContent != "")|| (libraries != null && libraries!.isNotEmpty))
         SizedBox(
           height: sizeBoxHeight,
         )

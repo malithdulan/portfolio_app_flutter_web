@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:portfolio/providers/image_fullscreen_selection_provider.dart';
 import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:provider/provider.dart';
+import '../../utils/utils.dart';
 
 class ImageSlider extends StatefulWidget {
   final List<String>? images;
@@ -19,15 +18,6 @@ class ImageSlider extends StatefulWidget {
 class _ImageSliderState extends State<ImageSlider> {
   int _activeIndex = 0;
 
-  //show image in fullscreen
-  _showFullscreenImage(int index) {
-    Provider.of<ImageFullscreenSelectionProvider>(context, listen: false)
-        .changeSelection(
-      isSelected: true,
-      url: widget.images?[index],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +32,7 @@ class _ImageSliderState extends State<ImageSlider> {
               return InkWell(
                 child: CustomNetworkImage(imageUrl: widget.images?[index]),
                 mouseCursor: SystemMouseCursors.click,
-                onTap: () => _showFullscreenImage(index),
+                onTap: () => Utils.shared.showFullscreenImage(context, widget.images?[index]),
               );
             },
             options: CarouselOptions(

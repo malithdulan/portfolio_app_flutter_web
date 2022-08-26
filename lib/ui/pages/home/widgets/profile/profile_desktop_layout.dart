@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/common_widgets/custom_network_image.dart';
 import 'package:portfolio/ui/common_widgets/gradient_button.dart';
+import 'package:portfolio/utils/utils.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class ProfileDesktopLayout extends StatelessWidget {
@@ -8,6 +9,7 @@ class ProfileDesktopLayout extends StatelessWidget {
   final String? title;
   final String? name;
   final String? description;
+  final String? cvUrl;
 
   const ProfileDesktopLayout({
     Key? key,
@@ -15,6 +17,7 @@ class ProfileDesktopLayout extends StatelessWidget {
     required this.title,
     required this.name,
     required this.description,
+    required this.cvUrl,
   }) : super(key: key);
 
   @override
@@ -23,10 +26,14 @@ class ProfileDesktopLayout extends StatelessWidget {
       padding: const EdgeInsets.all(40),
       child: Row(
         children: [
-          CustomNetworkImage(
-            imageUrl: image,
-            width: 200,
-            height: 200,
+          InkWell(
+            mouseCursor: SystemMouseCursors.click,
+            onTap: () => Utils.shared.showFullscreenImage(context, image),
+            child: CustomNetworkImage(
+              imageUrl: image,
+              width: 200,
+              height: 200,
+            ),
           ),
           const SizedBox(
             width: 50,
@@ -70,7 +77,7 @@ class ProfileDesktopLayout extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: GradientButton(
                     title: "Hire Me",
-                    callBack: () {},
+                    callBack: () => Utils.shared.downloadFile(cvUrl),
                   ),
                 )
               ],
