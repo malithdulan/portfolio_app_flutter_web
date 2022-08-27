@@ -47,7 +47,7 @@ class DemoProjectList extends StatelessWidget {
         preferredSize: const Size.fromHeight(40),
         child: AppBar(
           title: const Text(
-            "Projects",
+            "Demo Projects",
           ),
           centerTitle: true,
           backgroundColor: Colors.green,
