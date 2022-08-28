@@ -61,7 +61,7 @@ class QualificationCard extends StatelessWidget {
                                   e.picUrl ?? Constants.placeholderImage,
                                   width: 100,
                                   height: 50,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                 ),
                                 const SizedBox(
                                   height: 5,
